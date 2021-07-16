@@ -1,40 +1,22 @@
-use amethyst::{
-    assets::LoaderBundle,
-    core::{
+use amethyst::{Application, GameData, SimpleState, SimpleTrans, StateData, StateEvent, assets::LoaderBundle, core::{
         dispatcher::DispatcherBuilder,
         transform::TransformBundle,
-    },
-    ecs::{
-        System,
-        SystemBuilder,
-    },
-    input::{
+    }, ecs::{ParallelRunnable, System, SystemBuilder}, input::{
         is_close_requested,
         is_key_down,
         VirtualKeyCode,
-    },
-    renderer::{
+    }, renderer::{
         rendy::hal::command::ClearColor,
         types::DefaultBackend,
         RenderToWindow,
         RenderingBundle,
-    },
-    utils::application_root_dir,
-    Application,
-    GameData,
-    SimpleState,
-    SimpleTrans,
-    StateData,
-    StateEvent,
-};
+    }, utils::application_root_dir};
 use amethyst_egui::{
-    bundle::EguiBundle,
+    EguiBundle,
+    RenderEgui,
+    EguiConfig,
+    EguiContext,
     egui,
-    plugin::RenderEgui,
-    system::{
-        EguiConfig,
-        EguiContext,
-    },
 };
 use amethyst_input::InputBundle;
 
@@ -73,7 +55,7 @@ struct UiState {
 struct HelloWorldSystem;
 
 impl System for HelloWorldSystem {
-    fn build(self) -> Box<dyn amethyst::ecs::ParallelRunnable + 'static> {
+    fn build(self) -> Box<dyn ParallelRunnable + 'static> {
         Box::new(
             SystemBuilder::new("HelloWorldSystem")
                 .read_resource::<EguiContext>()

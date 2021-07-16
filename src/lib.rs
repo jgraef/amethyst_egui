@@ -19,4 +19,7 @@ pub mod plugin;
 pub mod pod;
 pub mod system;
 
+pub use bundle::EguiBundle;
+pub use system::{EguiConfig, EguiContext, EguiInputGrab};
+pub use plugin::RenderEgui;
 pub use egui;

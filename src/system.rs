@@ -1,6 +1,7 @@
 use std::{
     collections::HashMap,
     time::Duration,
+    fmt,
 };
 
 use amethyst_assets::Handle;
@@ -63,11 +64,26 @@ pub(crate) enum EguiStage {
     End(Output),
 }
 
+impl fmt::Debug for EguiStage {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            EguiStage::Begin => write!(f, "EguiStage::Begin"),
+            EguiStage::Render => write!(f, "EguiStage::Render"),
+            EguiStage::End(_) => write!(f, "EguiStage::End(_)"),
+        }
+    }
+}
+
+#[derive(Derivative)]
+#[derivative(Debug)]
 pub struct EguiContext {
+    #[derivative(Debug = "ignore")]
     pub(crate) ctx: CtxRef,
     pub(crate) stage: EguiStage,
+    #[derivative(Debug = "ignore")]
     pub(crate) user_textures: HashMap<u64, Handle<Texture>>,
 }
+
 
 impl Default for EguiContext {
     fn default() -> Self {
