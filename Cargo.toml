@@ -16,11 +16,14 @@ derivative = "2.2"
 glsl-layout = "0.4"
 lazy_static = "1.4"
 log = "0.4"
-egui = "0.13"
 winit = "0.25"
 webbrowser = { version = "0.5", optional = true }
 tts = { version = "0.17", optional = true }
 clipboard = { version = "0.5", optional = true }
+
+[dependencies.egui]
+version = "0.13"
+git = "https://github.com/emilk/egui.git"
 
 [dev-dependencies]
 amethyst = { git = "https://github.com/amethyst/amethyst.git", version = "0.16.0" }
